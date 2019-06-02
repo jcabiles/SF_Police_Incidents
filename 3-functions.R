@@ -69,7 +69,7 @@ show_plot_overtime <- function(df, title){
   
     ggplot(df, aes_string(x=colnames(df)[1],
                           y=colnames(df)[3],
-                          color=paste0(x="reorder(", colnames(df)[2], ", desc(", colnames(df)[3], "))"))) +
+                          color=paste0(x="reorder(", colnames(df)[2], ", -", colnames(df)[3], ")"))) +
     geom_line(stat="identity") +
     scale_y_continuous(labels = scales::comma) +
     labs(x = xlab, color=color_lab, title=title) +
