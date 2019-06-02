@@ -1,5 +1,7 @@
 #### Overview Stats ####
 
+table_preview <- head(sfpd_incidents, n=10)
+
 # table and plot for unique count of each Category
 table_unique_categ <- show_unique_count(sfpd_incidents, Category)
 plot_unique_categ <- plot_unique_count_xy(table_unique_categ, "Most Common SFPD Incidents between \n 2003 to 2018")
