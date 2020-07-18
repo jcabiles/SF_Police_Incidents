@@ -10,6 +10,7 @@ This is an analysis of a dataset of SFPD incidents between 2003 and 2018. Every 
 
 The Dataset
 -----------
+The dataset can be acquired using [this link to the San Francisco County website](https://data.sfgov.org/api/views/tmnf-yvry/rows.csv).
 
 ``` r
 table_preview
