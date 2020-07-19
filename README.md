@@ -3,9 +3,6 @@ SFPD Incidents (more organized)
 John Cabiles
 3/30/2019
 
-Created Local Branch by Daniel Garcia
- 07/19/20
-
 Introduction
 ============
 
@@ -200,7 +197,7 @@ table_top3_res_categ_arrest_desc
     ## # A tibble: 607 x 5
     ##    Category     Description                   Resolution   Count Frequency
     ##    <chr>        <chr>                         <chr>        <int>     <dbl>
-    ##  1 warrants     warrant arrest                arrest, boo… 51593      0.1
+    ##  1 warrants     warrant arrest                arrest, boo… 51593      0.1 
     ##  2 other offen… drivers license, suspended o… arrest, cit… 48096      0.09
     ##  3 warrants     enroute to outside jurisdict… arrest, boo… 27055      0.05
     ##  4 other offen… traffic violation             arrest, cit… 26753      0.05
