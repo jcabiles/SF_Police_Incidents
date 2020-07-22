@@ -1,50 +1,47 @@
-SFPD Incidents (more organized)
-================
+# SFPD Incidents (more organized)
+
 John Cabiles
 3/30/2019
 
 Created Local Branch by Daniel Garcia
- 07/19/20
+07/19/20
 
-Introduction
-============
+# Introduction
 
 This is an analysis of a dataset of SFPD incidents between 2003 and 2018. Every police incident was recorded and uploaded onto the SFPD incident database. Below is a preview of the dataset.
 
-The Dataset
------------
+## The Dataset
+
 The dataset can be acquired using [this link to the San Francisco County website](https://data.sfgov.org/api/views/tmnf-yvry/rows.csv).
 
-``` r
+```r
 table_preview
 ```
 
     ## # A tibble: 10 x 22
     ##    IncidntNum Category Description DayOfWeek Date       Time  PdDistrict
-    ##         <int> <chr>    <chr>       <fct>     <date>     <tim> <chr>     
-    ##  1  150060275 non-cri… lost prope… Monday    2015-01-19 5040… MISSION   
+    ##         <int> <chr>    <chr>       <fct>     <date>     <tim> <chr>
+    ##  1  150060275 non-cri… lost prope… Monday    2015-01-19 5040… MISSION
     ##  2  150098210 robbery  robbery, b… Sunday    2015-02-01 5670… TENDERLOIN
     ##  3  150098210 assault  aggravated… Sunday    2015-02-01 5670… TENDERLOIN
     ##  4  150098210 seconda… domestic v… Sunday    2015-02-01 5670… TENDERLOIN
-    ##  5  150098226 vandali… malicious … Tuesday   2015-01-27 6840… NORTHERN  
-    ##  6  150098232 non-cri… aided case… Sunday    2015-02-01 5886… RICHMOND  
-    ##  7  150098248 seconda… domestic v… Saturday  2015-01-31 7560… BAYVIEW   
-    ##  8  150098248 vandali… malicious … Saturday  2015-01-31 7560… BAYVIEW   
-    ##  9  150098254 burglary burglary o… Saturday  2015-01-31 5814… CENTRAL   
-    ## 10  150098260 larceny… petty thef… Saturday  2015-01-31 6120… CENTRAL   
+    ##  5  150098226 vandali… malicious … Tuesday   2015-01-27 6840… NORTHERN
+    ##  6  150098232 non-cri… aided case… Sunday    2015-02-01 5886… RICHMOND
+    ##  7  150098248 seconda… domestic v… Saturday  2015-01-31 7560… BAYVIEW
+    ##  8  150098248 vandali… malicious … Saturday  2015-01-31 7560… BAYVIEW
+    ##  9  150098254 burglary burglary o… Saturday  2015-01-31 5814… CENTRAL
+    ## 10  150098260 larceny… petty thef… Saturday  2015-01-31 6120… CENTRAL
     ## # ... with 15 more variables: Resolution <chr>, Address <chr>, X <dbl>,
     ## #   Y <dbl>, Location <chr>, PdId <dbl>, Month <ord>, Year <dbl>,
     ## #   PersonalCrime <chr>, PropertyCrime <chr>, InchoateCrime <chr>,
     ## #   StatutoryCrime <chr>, AutoCrime <chr>, TheftCrime <chr>,
     ## #   DrugCrime <chr>
 
-General
-=======
+# General
 
-Incidents by Category
----------------------
+## Incidents by Category.
 
-``` r
+```r
 table_unique_categ
 ```
 
@@ -63,16 +60,15 @@ table_unique_categ
     ## 10 suspicious occ  80444      0.04
     ## # ... with 29 more rows
 
-``` r
+```r
 plot_unique_categ
 ```
 
 ![](README_figs/README-unnamed-chunk-5-1.png)
 
-Incidents by Description
-------------------------
+## Incidents by Description
 
-``` r
+```r
 table_unique_descrip
 ```
 
@@ -91,16 +87,15 @@ table_unique_descrip
     ## 10 petty theft of property                46114      0.02
     ## # ... with 905 more rows
 
-``` r
+```r
 plot_unique_descrip
 ```
 
 ![](README_figs/README-unnamed-chunk-7-1.png)
 
-Incidents by Resolution
------------------------
+## Incidents by Resolution
 
-``` r
+```r
 table_unique_res
 ```
 
@@ -114,55 +109,53 @@ table_unique_res
     ##  5 psychopathic case                        29185      0.01
     ##  6 unfounded                                23799      0.01
     ##  7 juvenile booked                          14158      0.01
-    ##  8 complainant refuses to prosecute          8089      0   
-    ##  9 district attorney refuses to prosecute    7955      0   
-    ## 10 not prosecuted                            7720      0   
-    ## 11 juvenile cited                            6587      0   
-    ## 12 prosecuted by outside agency              5070      0   
-    ## 13 exceptional clearance                     4258      0   
-    ## 14 juvenile admonished                       3004      0   
-    ## 15 juvenile diverted                          694      0   
-    ## 16 cleared-contact juvenile for more info     689      0   
+    ##  8 complainant refuses to prosecute          8089      0
+    ##  9 district attorney refuses to prosecute    7955      0
+    ## 10 not prosecuted                            7720      0
+    ## 11 juvenile cited                            6587      0
+    ## 12 prosecuted by outside agency              5070      0
+    ## 13 exceptional clearance                     4258      0
+    ## 14 juvenile admonished                       3004      0
+    ## 15 juvenile diverted                          694      0
+    ## 16 cleared-contact juvenile for more info     689      0
     ## 17 prosecuted for lesser offense               85      0
 
-``` r
+```r
 plot_unique_res
 ```
 
 ![](README_figs/README-unnamed-chunk-9-1.png)
 
-Resolutions: Which Incidents Are Getting Resolved?
-==================================================
+# Resolutions: Which Incidents Are Getting Resolved?
 
-Top 3 Resolutions
------------------
+## Top 3 Resolutions
 
 As seen above, for 94% of the incidents, either someone was arrested (and they were booked or cited) or nothing happened. If we subset the data to show only that 94% of records, we can find trends in what Categories and Descriptions led to an arrest or led to no resolution.
 
-``` r
+```r
 sfpd_top3_resolutions
 ```
 
     ## # A tibble: 2,069,268 x 22
     ##    IncidntNum Category Description DayOfWeek Date       Time  PdDistrict
-    ##         <int> <chr>    <chr>       <fct>     <date>     <tim> <chr>     
-    ##  1  150060275 non-cri… lost prope… Monday    2015-01-19 5040… MISSION   
+    ##         <int> <chr>    <chr>       <fct>     <date>     <tim> <chr>
+    ##  1  150060275 non-cri… lost prope… Monday    2015-01-19 5040… MISSION
     ##  2  150098210 robbery  robbery, b… Sunday    2015-02-01 5670… TENDERLOIN
     ##  3  150098210 assault  aggravated… Sunday    2015-02-01 5670… TENDERLOIN
     ##  4  150098210 seconda… domestic v… Sunday    2015-02-01 5670… TENDERLOIN
-    ##  5  150098226 vandali… malicious … Tuesday   2015-01-27 6840… NORTHERN  
-    ##  6  150098232 non-cri… aided case… Sunday    2015-02-01 5886… RICHMOND  
-    ##  7  150098248 seconda… domestic v… Saturday  2015-01-31 7560… BAYVIEW   
-    ##  8  150098248 vandali… malicious … Saturday  2015-01-31 7560… BAYVIEW   
-    ##  9  150098254 burglary burglary o… Saturday  2015-01-31 5814… CENTRAL   
-    ## 10  150098260 larceny… petty thef… Saturday  2015-01-31 6120… CENTRAL   
+    ##  5  150098226 vandali… malicious … Tuesday   2015-01-27 6840… NORTHERN
+    ##  6  150098232 non-cri… aided case… Sunday    2015-02-01 5886… RICHMOND
+    ##  7  150098248 seconda… domestic v… Saturday  2015-01-31 7560… BAYVIEW
+    ##  8  150098248 vandali… malicious … Saturday  2015-01-31 7560… BAYVIEW
+    ##  9  150098254 burglary burglary o… Saturday  2015-01-31 5814… CENTRAL
+    ## 10  150098260 larceny… petty thef… Saturday  2015-01-31 6120… CENTRAL
     ## # ... with 2,069,258 more rows, and 15 more variables: Resolution <chr>,
     ## #   Address <chr>, X <dbl>, Y <dbl>, Location <chr>, PdId <dbl>,
     ## #   Month <ord>, Year <dbl>, PersonalCrime <chr>, PropertyCrime <chr>,
     ## #   InchoateCrime <chr>, StatutoryCrime <chr>, AutoCrime <chr>,
     ## #   TheftCrime <chr>, DrugCrime <chr>
 
-``` r
+```r
 table_top3_res_categ
 ```
 
@@ -181,19 +174,17 @@ table_top3_res_categ
     ## 10 other offenses none            87844      0.04
     ## # ... with 107 more rows
 
-Incident Categories that led to arrests
----------------------------------------
+## Incident Categories that led to arrests
 
-``` r
+```r
 plot_top3_res_categ_arrest
 ```
 
 ![](README_figs/README-unnamed-chunk-12-1.png)
 
-Description of incidents that led to arrest
-===========================================
+# Description of incidents that led to arrest
 
-``` r
+```r
 table_top3_res_categ_arrest_desc
 ```
 
@@ -214,30 +205,29 @@ table_top3_res_categ_arrest_desc
 
 Let's look at the description of plots that appear in the top 5 categories that led to arrests: \* other offenses
 
--   drug/narcotic
+- drug/narcotic
 
--   warrants
+- warrants
 
--   assault
+- assault
 
--   larceny/theft
+- larceny/theft
 
-``` r
+```r
 plot_top3_res_categ_arrest_desc_cited
 ```
 
 ![](README_figs/README-unnamed-chunk-14-1.png)
 
-``` r
+```r
 plot_top3_res_categ_arrest_desc_booked
 ```
 
 ![](README_figs/README-unnamed-chunk-15-1.png)
 
-Incident Categories that led to no resolution
----------------------------------------------
+## Incident Categories that led to no resolution
 
-``` r
+```r
 table_top10_nores
 ```
 
@@ -256,24 +246,23 @@ table_top10_nores
     ## 10 non-criminal found property                 none        29057      0.02
     ## # ... with 544 more rows
 
-``` r
+```r
 plot_top3_res_categ_nores
 ```
 
 ![](README_figs/README-unnamed-chunk-17-1.png)
 
-``` r
+```r
 plot_top10_nores_desc
 ```
 
 ![](README_figs/README-unnamed-chunk-18-1.png)
 
-Throughout the Years: How have incidents changed over the years?
-================================================================
+# Throughout the Years: How have incidents changed over the years?
 
 ### Change in Category over Time
 
-``` r
+```r
 yr_cat
 ```
 
@@ -292,40 +281,33 @@ yr_cat
     ## 10  2008 larceny/theft 25807      0.01
     ## # ... with 599 more rows
 
-``` r
+```r
 p_yr_cat
 ```
 
 ![](README_figs/README-unnamed-chunk-20-1.png)
 
-Descriptions of Larceny and Theft Incidents
--------------------------------------------
+## Descriptions of Larceny and Theft Incidents
 
-``` r
+```r
 p_yr_desc_larceny
 ```
 
 ![](README_figs/README-unnamed-chunk-21-1.png)
 
-Where does SFPD Go?
-===================
+# Where does SFPD Go?
 
-Incidents by Neighborhood
--------------------------
+## Incidents by Neighborhood
 
-Heatmap of Incidents
---------------------
+## Heatmap of Incidents
 
-Most Common Types of Incidents
-==============================
+# Most Common Types of Incidents
 
-Auto Crimes
------------
+## Auto Crimes
 
 ### Over Time
 
-Theft Crimes Increasing
------------------------
+## Theft Crimes Increasing
 
 ### Theft Subcategories
 
@@ -335,4 +317,4 @@ Theft Crimes Increasing
 
 ### Why have thefts been increasing since 2010?
 
--   External datasets: population in SF since 2010, day population since 2010, legislation changes in SF since 2010
+- External datasets: population in SF since 2010, day population since 2010, legislation changes in SF since 2010
